@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}ارسال بسته{% endblock %}
+{% block content %}
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h4 class="card-title mb-4 text-center">برآورد قیمت ارسال بسته</h4>
+
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-success text-center">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+
+      <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <!-- Render fields manually -->
+        <div class="mb-3 text-center">
+          <label class="form-label d-block">{{ form.ship_type.label }}</label>
+          {% for radio in form.ship_type %}
+            <div class="form-check form-check-inline">
+              {{ radio.tag }}
+              <label class="form-check-label">{{ radio.choice_label }}</label>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            {{ form.from_location.label_tag }}
+            {{ form.from_location }}
+          </div>
+          <div class="col-md-6">
+            {{ form.to_location.label_tag }}
+            {{ form.to_location }}
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            {{ form.from_address.label_tag }}
+            {{ form.from_address }}
+          </div>
+          <div class="col-md-6">
+            {{ form.to_address.label_tag }}
+            {{ form.to_address }}
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4">
+            {{ form.weight_kg.label_tag }}
+            {{ form.weight_kg }}
+          </div>
+          <div class="col-md-4">
+            {{ form.send_date.label_tag }}
+            {{ form.send_date }}
+          </div>
+          <div class="col-md-4">
+            {{ form.notes.label_tag }}
+            {{ form.notes }}
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-success px-5">ثبت بسته</button>
+          <button type="button" class="btn btn-outline-success px-5">برآورد قیمت و زمان حمل</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
