@@ -13,6 +13,7 @@ def send_package(request):
             package.save()
             messages.success(request, 'بسته شما با موفقیت ثبت شد!')
             return redirect('send_package')
+            tracking_code = package.tracking_code 
     else:
         form = PackageForm()
 

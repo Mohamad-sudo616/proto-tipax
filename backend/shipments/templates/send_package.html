@@ -2,6 +2,13 @@
 {% load static %}
 {% block title %}ارسال بسته{% endblock %}
 {% block content %}
+{% if tracking_code %}
+  <div class="alert alert-success text-center">
+    بسته شما با موفقیت ثبت شد ✅ <br>
+    <strong>کد رهگیری شما:</strong> {{ tracking_code }}
+  </div>
+{% endif %}
+
 <div class="container mt-5">
   <div class="card shadow-sm">
     <div class="card-body">

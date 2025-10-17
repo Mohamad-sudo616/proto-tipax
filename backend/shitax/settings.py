@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'user',
     'mail',
     'dashboard',
-    'shipments'
+    'shipments',
+    'tracking'
 
 ]
 
