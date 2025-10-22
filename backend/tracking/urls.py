@@ -1,9 +1,7 @@
-# tracking/urls.py
-from django.urls import path
-from . import views
 
-app_name = 'tracking'
+from django.urls import path
+from .views import TrackPackageView
 
 urlpatterns = [
-    path('', views.track_package, name='track'),
+    path('', TrackPackageView.as_view(), name='track_package'),
 ]

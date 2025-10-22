@@ -1,23 +1,25 @@
-# tracking/views.py
+from django.views.generic.edit import FormView
 from django.shortcuts import render
 from .forms import TrackingForm
 from .models import Package
 
-def track_package(request):
-    form = TrackingForm(request.GET or None)
-    package = None
-    not_found = False
+class TrackPackageView(FormView):
+    template_name = 'tracking/track.html'
+    form_class = TrackingForm
 
-    if form.is_valid():
+    def form_valid(self, form):
         code = form.cleaned_data['tracking_code']
+        package = None
+        not_found = False
+
         try:
             package = Package.objects.prefetch_related('events').get(tracking_code__iexact=code)
         except Package.DoesNotExist:
             not_found = True
 
-    context = {
-        'form': form,
-        'package': package,
-        'not_found': not_found,
-    }
-    return render(request, 'tracking/track.html', context)
+        # Pass the results to the template
+        return self.render_to_response(self.get_context_data(
+            form=form,
+            package=package,
+            not_found=not_found
+        ))

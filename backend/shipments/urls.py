@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+from .views import SendPackageView
 
 urlpatterns = [
-    path('', views.send_package, name='send_package'),
+    path('send/', SendPackageView.as_view(), name='send_package'),
 ]

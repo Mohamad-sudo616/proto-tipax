@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container text-center mt-5">
+  <h2 class="text-success">✅ بسته شما با موفقیت ثبت شد!</h2>
+  <p class="mt-4">کد رهگیری بسته شما:</p>
+  <h3 class="text-primary" style="direction: ltr;">{{ tracking_code }}</h3>
+
+  <p class="mt-4">شما می‌توانید با استفاده از این کد، وضعیت بسته خود را رهگیری کنید.</p>
+
+  <a href="/" class="btn btn-outline-success mt-3">بازگشت به صفحه اصلی</a>
+</div>
+{% endblock %}
